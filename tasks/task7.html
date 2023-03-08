@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@800&family=Montserrat:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+    <title>Задача 7</title>
+  </head>
+
+  <body>
+    <div class="wrapper">
+      <h2>Задача 7.</h2>
+      <p>
+        Дано послідовність платіжок протягом року. Знайти сумарну кількість
+        грошей за:
+      </p>
+      <ol>
+        <li>за весь рік;</li>
+        <li>у першій половині року;</li>
+        <li>у другій половині року;</li>
+        <li>за літо;</li>
+        <li>за ІІ квартал;</li>
+        <li>за парні місяці (з парними номерами);</li>
+        <li>
+          за місяці, які є початковими у сезоні (весна, літо, осінь, зима).
+        </li>
+      </ol>
+    </div>
+
+    <script>
+      let monthlyPayments = [];
+      for (let i = 0; i < 12; i++) {
+        let monthlyIncome = parseInt(
+          prompt(`Введіть платіжку за ${i + 1} місяць`, "")
+        );
+        monthlyPayments.push(monthlyIncome);
+      }
+
+      function getSumMonthlyPayments(
+        monthlyPay,
+        startMonthNumber,
+        endMonthNumber
+      ) {
+        let sum = 0;
+        for (let i = startMonthNumber - 1; i < endMonthNumber; i++) {
+          sum += monthlyPay[i];
+        }
+        return sum;
+      }
+
+      function getSumCoupleMonthlyPayments(monthlyPay) {
+        let sum = 0;
+        for (let i = 0; i < monthlyPay.length; i++) {
+          if ((i + 1) % 2 === 0) sum += monthlyPay[i];
+        }
+        return sum;
+      }
+
+      function getSumStartSeasonMonthlyPayments(monthlyPay) {
+        let sum = 0;
+        for (let i = 0; i < monthlyPay.length; i++) {
+          if ((i + 1) % 3 === 0) sum += monthlyPay[i];
+        }
+        return sum;
+      }
+
+      document.write(`<table> <tbody>`);
+      document.write(
+        `<tr><td>за весь рік</td><td> ${getSumMonthlyPayments(
+          monthlyPayments,
+          1,
+          12
+        )} </td></tr>`
+      );
+      document.write(
+        `<tr><td>у першій половині року</td><td> ${getSumMonthlyPayments(
+          monthlyPayments,
+          1,
+          6
+        )} </td></tr>`
+      );
+      document.write(
+        `<tr><td>у другій половині року</td><td> ${getSumMonthlyPayments(
+          monthlyPayments,
+          7,
+          12
+        )} </td></tr>`
+      );
+      document.write(
+        `<tr><td>за літо</td><td> ${getSumMonthlyPayments(
+          monthlyPayments,
+          6,
+          8
+        )} </td></tr>`
+      );
+      document.write(
+        `<tr><td>за ІІ квартал</td><td> ${getSumMonthlyPayments(
+          monthlyPayments,
+          4,
+          6
+        )} </td></tr>`
+      );
+      document.write(
+        `<tr><td>за парні місяці (з парними номерами)</td><td> ${getSumCoupleMonthlyPayments(
+          monthlyPayments
+        )} </td></tr>`
+      );
+      document.write(
+        `<tr><td>за місяці, які є початковими у сезоні (весна, літо, осінь, зима)</td><td> ${getSumStartSeasonMonthlyPayments(
+          monthlyPayments
+        )} </td></tr>`
+      );
+      document.write(`</table> </tbody>`);
+    </script>
+  </body>
+</html>

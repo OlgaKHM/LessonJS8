@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@800&family=Montserrat:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+    <title>Задача 1</title>
+  </head>
+
+  <body>
+    <div class="wrapper">
+      <h2>Задача 1.</h2>
+      <p>
+        Дано масив, який містить оцінки з К предметів. Знайти середній бал і
+        з’ясувати до якої категорії він відноситься (відмінник, двійочник (має
+        хоча би одну двійку), хорошист (оцінки добре і відмінно), трійочник(є
+        хоча би одна трійка)).
+      </p>
+    </div>
+    <script>
+      const numberSubjects = parseInt(
+        prompt("Введіть кількість предметів", "1")
+      );
+      let subjectGrades = [];
+      for (let i = 0; i < numberSubjects; i++) {
+        let assessment = parseInt(
+          prompt(`Введіть оцінку з ${i + 1} предмету`, "від 2 до 5")
+        );
+        subjectGrades.push(assessment);
+      }
+
+      function getStudentAssessment(subjectGrades) {
+        let studentLevel;
+        let minAssessment = Infinity;
+        for (let i = 0; i < numberSubjects; i++) {
+          if (subjectGrades[i] < minAssessment) {
+            minAssessment = subjectGrades[i];
+          }
+          for (let i = 0; i < numberSubjects; i++) {
+            if (minAssessment === 2) {
+              studentLevel = "двійочник";
+              break;
+            } else if (minAssessment === 3) {
+              studentLevel = "трійочник";
+              break;
+            } else if (minAssessment === 4) {
+              studentLevel = "хорошист";
+              break;
+            } else studentLevel = "відмінник";
+          }
+        }
+
+        return studentLevel;
+      }
+      let studentAssessment = getStudentAssessment(subjectGrades);
+
+      let averageStudentLevel = 0;
+      function getAverageStudentAssessment(subjectGrades) {
+        for (let i = 0; i < numberSubjects; i++) {
+          averageStudentLevel += subjectGrades[i] / numberSubjects;
+        }
+        return averageStudentLevel;
+      }
+      let averageStudentAssessment = getAverageStudentAssessment(subjectGrades);
+
+      document.write(
+        `<h3>Oцінки студента: ${subjectGrades}.<br>Середній бал студента: ${averageStudentAssessment}.<br> Студент відноситься до категорії: ${studentAssessment}.</h3>`
+      );
+    </script>
+  </body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@800&family=Montserrat:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+    <title>Задача 8</title>
+  </head>
+
+  <body>
+    <div class="wrapper">
+      <h2>Задача 8.</h2>
+      <p>
+        Дано одновимірний масив, у якому зберігається певна виграшна сума
+        (елементи заповнюються випадковим чином значеннями від -500 до 500).
+        Надаючи користувачу можливість вибирати номери елементів (поки він не
+        відмовиться). Знаходити сумарний виграш.
+      </p>
+    </div>
+    <script>
+      let arr = [];
+      const minRandomItem = -500;
+      const maxRandomItem = 500;
+      const maxItem = 100;
+      let winningAmount = 0;
+      let continuationGame;
+      for (let i = 0; i < maxItem; i++) {
+        let randomItem = Math.floor(
+          Math.random() * (maxRandomItem - minRandomItem) + minRandomItem
+        );
+        arr.push(randomItem);
+      }
+
+      do {
+        let userItem = parseInt(prompt(`Виберіть номер від 1 до 100`, ``));
+        winningAmount += arr[userItem - 1];
+        continuationGame = confirm(`Ви виграли ${winningAmount}. Продовжимо?`);
+      } while (continuationGame);
+
+      document.write(`<h3>Ваш виграш склав ${winningAmount}</h3>`);
+    </script>
+  </body>
+</html>

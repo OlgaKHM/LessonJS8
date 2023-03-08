@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@800&family=Montserrat:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+    <title>Задача 5</title>
+  </head>
+
+  <body>
+    <div class="wrapper">
+      <h2>Задача 5.</h2>
+      <p>Дано послідовність оцінок учня. Підрахувати кількість:</p>
+      <ol>
+        <li>двійок;</li>
+        <li>кількість хороших оцінок (добре, відмінно);</li>
+        <li>кількість оцінок, які нижче середнього.</li>
+      </ol>
+    </div>
+    <script>
+      let subjectGrades = [];
+      const numberOfRatings = 8;
+      for (let i = 0; i < numberOfRatings; i++) {
+        let assessment = parseInt(
+          prompt(`Введіть ${i + 1} оцінку з 8`, "від 2 до 5")
+        );
+        subjectGrades.push(assessment);
+      }
+
+      function getNumberOfRatings2(subjectGrades) {
+        let numberOfRatings2 = 0;
+        for (let i = 0; i < numberOfRatings; i++) {
+          if (subjectGrades[i] === 2) numberOfRatings2 += 1;
+        }
+        return numberOfRatings2;
+      }
+      getNumberOfRatings2(subjectGrades);
+
+      function getNumberOfRatings4_5(subjectGrades) {
+        let NumberOfRatings4_5 = 0;
+        for (let i = 0; i < numberOfRatings; i++) {
+          if (subjectGrades[i] === 4 || subjectGrades[i] === 5)
+            NumberOfRatings4_5 += 1;
+        }
+        return NumberOfRatings4_5;
+      }
+      getNumberOfRatings4_5(subjectGrades);
+
+      let averageRating = 0;
+      for (let i = 0; i < numberOfRatings; i++) {
+        averageRating += subjectGrades[i] / numberOfRatings;
+      }
+
+      function getNumberOfRatingsMin(subjectGrades) {
+        let NumberOfRatingsMin = 0;
+        for (let i = 0; i < numberOfRatings; i++) {
+          if (subjectGrades[i] < averageRating) NumberOfRatingsMin += 1;
+        }
+        return NumberOfRatingsMin;
+      }
+      getNumberOfRatingsMin(subjectGrades);
+
+      document.write(`<table><tbody>`);
+
+      document.write(
+        `<tr><td>кількість двійок:</td><td>${getNumberOfRatings2(
+          subjectGrades
+        )}</td></tr>`
+      );
+      document.write(
+        `<tr><td>кількість хороших оцінок (добре, відмінно):</td><td>${getNumberOfRatings4_5(
+          subjectGrades
+        )}</td></tr>`
+      );
+      document.write(
+        `<tr><td>кількість оцінок, які нижче середнього:</td><td>${getNumberOfRatingsMin(
+          subjectGrades
+        )}</td></tr>`
+      );
+
+      document.write(`</tbody></table>`);
+    </script>
+  </body>
+</html>

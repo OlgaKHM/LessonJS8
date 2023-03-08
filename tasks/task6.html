@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@800&family=Montserrat:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+    <title>Задача 6</title>
+  </head>
+
+  <body>
+    <div class="wrapper">
+      <h2>Задача 6.</h2>
+      <p>
+        Дано послідовність цін товарів та назв (у окремих масивах). Вивести на
+        екран ті, які може собі дозволити користувач (кількість грошей
+        задається).
+      </p>
+    </div>
+    <script>
+      let userMoney = parseInt(
+        prompt("Введіть кількість грошей на покупки", "1")
+      );
+      const productsPrices = [1000, 30, 25, 750, 150, 550];
+      const productsTitles = [
+        "сир",
+        "молоко",
+        "хліб",
+        "ковбаса",
+        "помідори",
+        "масло",
+      ];
+      let userBuy = [];
+      function getUserBuy(productsPrices, productsTitles, userMoney) {
+        for (let i = 0; i < productsPrices.length; i++) {
+          if (productsPrices[i] <= userMoney) userBuy.push(productsTitles[i]);
+        }
+        return userBuy;
+      }
+      getUserBuy(productsPrices, productsTitles, userMoney);
+      document.write(
+        `<h3>товари, які може собі дозволити користувач: ${userBuy}</h3>`
+      );
+    </script>
+  </body>
+</html>

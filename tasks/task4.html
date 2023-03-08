@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@800&family=Montserrat:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+    <title>Задача 4</title>
+  </head>
+
+  <body>
+    <div class="wrapper">
+      <h2>Задача 4.</h2>
+      <p>
+        Дано послідовність номерів автомобілів. Підрахувати кількість номерів,
+        які :
+      </p>
+      <ol>
+        <li>починаються на букву «А»;</li>
+        <li>перша і остання літери співпадають;</li>
+        <li>складаються з більше ніш 5 символів.</li>
+      </ol>
+    </div>
+
+    <script>
+      const autoNumbers = [
+        "A55A",
+        "AN665544",
+        "A3219A",
+        "56HT65",
+        "B562B",
+        "777OG",
+      ];
+
+      function getCounterStartA(autoNumbers) {
+        let counter = 0;
+        for (i = 0; i < autoNumbers.length; i++) {
+          if (autoNumbers[i][0] === "A") counter += 1;
+        }
+        return counter;
+      }
+
+      function getCounterStartEndTheSame(autoNumbers) {
+        let counter = 0;
+        for (i = 0; i < autoNumbers.length; i++) {
+          if (autoNumbers[i][0] === autoNumbers[i][autoNumbers[i].length - 1])
+            counter += 1;
+        }
+        return counter;
+      }
+
+      function getCounterMoreTHan5Numbers(autoNumbers) {
+        let counter = 0;
+        for (i = 0; i < autoNumbers.length; i++) {
+          if (autoNumbers[i].length > 5) counter += 1;
+        }
+        return counter;
+      }
+
+      document.write(`<table><tbody>`);
+
+      document.write(
+        `<tr><td>починаються на букву «А»</td><td>${getCounterStartA(
+          autoNumbers
+        )}</td></tr>`
+      );
+      document.write(
+        `<tr><td>перша і остання літери співпадають</td><td>${getCounterStartEndTheSame(
+          autoNumbers
+        )}</td></tr>`
+      );
+      document.write(
+        `<tr><td>складаються з більше ніш 5 символів</td><td>${getCounterMoreTHan5Numbers(
+          autoNumbers
+        )}</td></tr>`
+      );
+
+      document.write(`</tbody></table>`);
+    </script>
+  </body>
+</html>

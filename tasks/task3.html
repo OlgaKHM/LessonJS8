@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@800&family=Montserrat:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+    <title>Задача 3</title>
+  </head>
+
+  <body>
+    <div class="wrapper">
+      <h2>Задача 3.</h2>
+      <p>
+        Дано масив імен учнів. З’ясувати скільки разів зустрічається ім’я
+        «Іван».
+      </p>
+    </div>
+    <script>
+      const studentNumes = [
+        "Іван",
+        "Олена",
+        "Іван",
+        "Олена",
+        "Катерина",
+        "Іван",
+      ];
+      let counterNumesIvan = 0;
+      //опис функції
+      function getCounterNumesIvan(studentNumes) {
+        for (i = 0; i < studentNumes.length; i++) {
+          if (studentNumes[i] === "Іван") counterNumesIvan += 1;
+        }
+        return counterNumesIvan;
+      }
+
+      document.write(
+        `<h3>Iм’я «Іван» зустрічається ${getCounterNumesIvan(
+          studentNumes
+        )} раз</h3>`
+      );
+    </script>
+  </body>
+</html>

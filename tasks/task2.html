@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@800&family=Montserrat:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+    <title>Задача 2</title>
+  </head>
+
+  <body>
+    <div class="wrapper">
+      <h2>Задача 2.</h2>
+      <p>
+        Дано масив, який зберігає кількість відвідувачів магазину протягом
+        тижня. Вивести на екран:
+      </p>
+      <ol>
+        <li>
+          номери днів, протягом яких кількість відвідувачів була меншою за 20;
+        </li>
+        <li>номери днів, коли кількість відвідувачів була мінімальною;</li>
+        <li>номери днів, коли кількість відвідувачів була максимальною;</li>
+        <li>
+          загальну кількість клієнтів у робочі дні та окремо загальну кількість
+          на вихідних.
+        </li>
+      </ol>
+    </div>
+    <script>
+      let numberOfVisitors = [];
+      for (let i = 0; i < 7; i++) {
+        let counter = parseInt(
+          prompt(`Введіть кількість відвідувачів магазину ${i + 1} дня`, "0")
+        );
+        numberOfVisitors.push(counter);
+      }
+
+      function getLessThan20Visitors(numberOfVisitors) {
+        let dayNuumbersLessThan20visits = [];
+        for (let i = 0; i < 7; i++) {
+          if (numberOfVisitors[i] < 20) dayNuumbersLessThan20visits.push(i + 1);
+        }
+        return dayNuumbersLessThan20visits;
+      }
+      getLessThan20Visitors(numberOfVisitors);
+
+      let averageNumberVisitors = 0;
+      for (let i = 0; i < 7; i++) {
+        averageNumberVisitors += numberOfVisitors[i] / 7;
+      }
+
+      function getMinNumberVisitors(numberOfVisitors) {
+        let dayMinNumberVisitors = [];
+        for (let i = 0; i < 7; i++) {
+          if (numberOfVisitors[i] < averageNumberVisitors)
+            dayMinNumberVisitors.push(i + 1);
+        }
+        return dayMinNumberVisitors;
+      }
+      getMinNumberVisitors(numberOfVisitors);
+
+      function getMaxNumberVisitors(numberOfVisitors) {
+        let dayMaxNumberVisitors = [];
+        for (let i = 0; i < 7; i++) {
+          if (numberOfVisitors[i] > averageNumberVisitors)
+            dayMaxNumberVisitors.push(i + 1);
+        }
+        return dayMaxNumberVisitors;
+      }
+      getMaxNumberVisitors(numberOfVisitors);
+
+      let numberVisitorsWorkDay = 0;
+      function getNumberVisitorsWorkDay(numberOfVisitors) {
+        for (let i = 0; i < 5; i++) {
+          numberVisitorsWorkDay += numberOfVisitors[i];
+        }
+        return numberVisitorsWorkDay;
+      }
+      getNumberVisitorsWorkDay(numberOfVisitors);
+
+      let numberVisitorsWeekendDay = 0;
+      function getNumberVisitorsWeekendDay(numberOfVisitors) {
+        for (let i = 5; i < 7; i++) {
+          numberVisitorsWeekendDay += numberOfVisitors[i];
+        }
+        return numberVisitorsWeekendDay;
+      }
+      getNumberVisitorsWeekendDay(numberOfVisitors);
+
+      document.write(`<table><tbody>`);
+
+      document.write(
+        `<tr><td>номери днів, протягом яких кількість відвідувачів була меншою за 20</td><td>${getLessThan20Visitors(
+          numberOfVisitors
+        )}</td></tr>`
+      );
+      document.write(
+        `<tr><td>номери днів, коли кількість відвідувачів була мінімальною</td><td>${getMinNumberVisitors(
+          numberOfVisitors
+        )}</td></tr>`
+      );
+      document.write(
+        `<tr><td>номери днів, коли кількість відвідувачів була максимальною</td><td>${getMaxNumberVisitors(
+          numberOfVisitors
+        )}</td></tr>`
+      );
+      document.write(
+        `<tr><td>Загальна кількість клієнтів у робочі дні</td><td>${numberVisitorsWorkDay}</td></tr>`
+      );
+      document.write(
+        `<tr><td>Загальна кількість клієнтів на вихідних</td><td>${numberVisitorsWeekendDay}</td></tr>`
+      );
+      document.write(`</tbody></table>`);
+    </script>
+  </body>
+</html>
